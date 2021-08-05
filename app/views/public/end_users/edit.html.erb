@@ -1,0 +1,50 @@
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h3>会員情報編集</h3>
+    <%= form_with model: @end_user, url: end_users_mypage_path, local: true do |f| %>
+      
+      <div class="row input-group mb-2 mt-4">
+        <p class="col-lg-2">お名前</p>
+        <%= f.label :"(姓)",class:"col-md-1" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "col-md-3" %>  
+        <%= f.label :"(名)",class:"col-md-1" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "col-md-3" %>  
+      </div>
+      
+      <div class="row input-group mb-2">
+        <p class="col-md-2">フリガナ</p>
+        <%= f.label :"(セイ)",class:"col-md-1" %>
+        <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "off", class: "col-md-3" %>
+        <%= f.label :"(メイ)",class:"col-md-1" %>
+        <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", class: "col-md-3" %>
+      </div>
+      
+      <div class="row input-group mb-2">
+          <%= f.label :郵便番号（ハイフン無し）, class:"col-md-3" %>  
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "off", class:"col-md-3" %>
+      </div>
+      
+      <div class="row input-group mb-3">
+          <%= f.label :住所, class:"col-md-3"%>  
+          <%= f.text_field :ship_address, autofocus: true, autocomplete: "off", class:"col-md-7" %>
+      </div>
+      
+      <div class="row input-group mb-3">
+          <%= f.label :電話番号, class:"col-md-3" %>
+          <%= f.text_field :phone_number, autofocus: true, autocomplete: "off", class:"col-md-3" %>
+      </div>
+      
+      <div class="row input-group mb-2">
+        <%= f.label :メールアドレス, class:"col-md-3" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-md-3" %>
+      </div>
+    
+      <div class="row group mt-4 mb-3">
+        <%= f.submit "編集内容を保存", class: 'btn btn-success offset-3 col-md-2' %>
+        <%= link_to "退会する" , end_users_confirm_path, class: "btn btn-danger offset-2 col-md-2" %>
+      </div>
+      
+    <% end %>
+    
+  </div>
+</div>

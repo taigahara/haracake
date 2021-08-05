@@ -1,0 +1,78 @@
+<div class="row mt-5">
+
+
+  <div class="col-md-12">
+    <h3>新規会員登録</h3>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+
+      <div class="row input-group mb-2 mt-4">
+        <p class="col-lg-2">お名前</p>
+        <%= f.label :"(姓)",class:"col-md-1" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "col-md-3" %>
+        <%= f.label :"(名)",class:"col-md-1" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "col-md-3" %>
+      </div>
+
+      <div class="row input-group mb-2">
+          <p class="col-md-2">フリガナ</p>
+          <%= f.label :"(セイ)",class:"col-md-1" %>
+          <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "off", class: "col-md-3" %>
+          <%= f.label :"(メイ)",class:"col-md-1" %>
+          <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", class: "col-md-3" %>
+      </div>
+
+      <div class="row input-group mb-2">
+        <%= f.label :メールアドレス, class:"col-md-3" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-md-3" %>
+      </div>
+
+      <div class="row input-group mb-2">
+          <%= f.label :郵便番号（ハイフン無し）, class:"col-md-3" %>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "off", class:"col-md-3" %>
+      </div>
+
+      <div class="row input-group mb-3">
+          <%= f.label :住所, class:"col-md-3"%>
+          <%= f.text_field :ship_address, autofocus: true, autocomplete: "off", class:"col-md-7" %>
+      </div>
+
+      <div class="row input-group mb-3">
+          <%= f.label :電話番号, class:"col-md-3" %>
+          <%= f.text_field :phone_number, autofocus: true, autocomplete: "off", class:"col-md-3" %>
+      </div>
+
+
+      <div class="row input-group mb-3">
+        <div class="lavel col-md-3">
+          <%= f.label :パスワード %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %>
+        </div>
+          <%= f.password_field :password, autocomplete: "new-password", class:"col-md-3" %>
+      </div>
+
+      <div class="row input-group mb-3">
+          <%= f.label :パスワード（再確認）, class:"col-md-3" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-md-3" %>
+      </div>
+
+      <div class="row group mb-3">
+        <div class="offset-3">
+          <%= f.submit "新規登録", class: 'btn btn-sm btn-success' %>
+        </div>
+      </div>
+    <% end %>
+
+
+
+    <div class="row">
+      <h3>すでに登録済みの方</h3>
+      <div class="link">
+        <p><%= render "public/shared/links" %>からログインしてください。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
