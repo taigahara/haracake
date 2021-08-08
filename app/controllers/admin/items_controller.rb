@@ -29,6 +29,13 @@ class Admin::ItemsController < ApplicationController
     @item.update(item_params)
     redirect_to admin_item_path(@item)
   end
+
+  def search
+    @items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
+
   
   private
    def item_params

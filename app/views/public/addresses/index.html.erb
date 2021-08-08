@@ -1,0 +1,33 @@
+<div class="row mt-5">
+  <div class="col-md-8">
+    <div class="group">
+      <%= form_with model: @address, url: addresses_path, local: true do |f| %>
+        <p>郵便番号：<%= f.text_field :postal_code %></p>
+        <P>住所：<%= f.text_field :ship_address %></P>
+        <p>宛名：<%= f.text_field :ship_name %></p>
+        <p><%= f.submit "新規登録" %></p>
+      <% end %>
+    </div>
+    <div class="group">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td><%= address.postal_code %></td>
+              <td><%= address.ship_address %></td>
+              <td><%= address.ship_name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</div>
