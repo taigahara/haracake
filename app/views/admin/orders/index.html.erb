@@ -1,0 +1,37 @@
+<div class="row mt-5">
+  <div class="col-md-10 mx-auto">
+    <div class="group">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+          <tr>
+            <td>
+              <%= link_to admin_order_path(order) do %>
+                <%= l order.created_at %>
+              <% end %>
+            </td>
+            <td>
+              <% if order.end_user.nil? %>
+                <% @end_user = EndUser.with_deleted.find(order.end_user_id) %>
+                <%= @end_user.first_name %> <%= @end_user.last_name %>
+              <% else %>
+                <%= order.end_user.first_name %> <%= order.end_user.last_name %>
+              <% end %>
+            </td>
+            <td><%= order.order_details.sum(:amount) %></td>
+            <td><%= order.order_status_i18n %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
