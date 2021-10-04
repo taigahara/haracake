@@ -41,11 +41,13 @@ class Public::CartItemsController < ApplicationController
     def setup_cart_item!
       @cart_items = current_end_user.cart_items
       if @cart_items.find_by(item_id: session[:item_id]).present?
+        #カートアイテムを入れる時、それが2回目以降
         @cart_item = @cart_items.find_by(item_id: session[:item_id])
       else
+        #カートにアイテムを入れる時、それが初めてだったら
         @cart_item = CartItem.new(cart_item_params)
         @cart_item.item_id = session[:item_id]
-        @cart_item.amount = 0
+        @cart_item.amount = 0 #いらないのでは？
       end
     end
 end

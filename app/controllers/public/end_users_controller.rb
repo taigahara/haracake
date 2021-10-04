@@ -21,8 +21,8 @@ class Public::EndUsersController < ApplicationController
   
   def withdrow
     end_user = EndUser.find(current_end_user.id)
-    end_user.is_deleted = true
-    end_user.save
+    end_user.is_deleted = true　#falseが入会中、trueが退会済み
+    end_user.save #いらないのでは？
     if end_user.destroy
       redirect_to root_path
     end

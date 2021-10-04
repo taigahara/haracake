@@ -11,6 +11,10 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_end_user.cart_items
   end
   
+  #注文確認画面からcomplete画面へ
+  #orderモデルの中に情報を入れる
+  #cartitemの情報をorderdetailの中に入れる
+  #cartitemの情報を消す
   def create
     redirect_to cart_items_path unless current_end_user.cart_items.exists?
     @cart_items = CartItem.all
@@ -52,7 +56,8 @@ class Public::OrdersController < ApplicationController
       @end_user = current_end_user
       @order.end_user_id = @end_user.id
       
-      if params[:order][:address_option] == "0"
+      #paramsはformで受け取ったもの
+      if params[:order][:address_option] == "0"　#paramsという連想配列から抜き出してるからsymbol[0]で保存される
         @order.postal_code = @end_user.postal_code
         @order.ship_address = @end_user.ship_address
         @order.ship_name = (@end_user.first_name + " " + @end_user.last_name)
@@ -66,9 +71,9 @@ class Public::OrdersController < ApplicationController
         @order.ship_address = params[:order][:ship_address]
         @order.ship_name = params[:order][:ship_name]
       end
-      
-      if params[:order][:payment_method] == "0"
-        @order.payment_method = 0
+      binding.pry
+      if params[:order][:payment_method] == "0" 
+        @order.payment_method = 0 
       elsif params[:order][:payment_method] == "1"
         @order.payment_method = 1
       end

@@ -4,16 +4,20 @@
     <div class="form row">
       <%= form_with model: @order, url: orders_confirm_path, method: :post, local: true do |f| %>
         <div class="form_group mb-3">
+
           <h4>支払い方法</h4>  <!-- ラジオボタン -->
+          #:payment_methodは表示したいだけなら適当でいい。ストロングパラメータとか使って保存したいときはカラム名と合わせる。
           <%= f.radio_button :payment_method, :credit %>
           <%= f.label :payment_method, :クレジットカード, {value: 0, style: "display: inline-block;"} %><br>
           <%= f.radio_button :payment_method, :bank %>
           <%= f.label :payment_method, :銀行振込, {value: 0, style: "display: inline-block;"} %>
         </div>
+
         <div class="form_group">
           <h4>お届け先</h4>
           <div class="my_address mb-3">
-            <%= f.radio_button :address_option, 0 %>
+          #address_optionは任意の名前　
+            <%= f.radio_button :address_option, 0 %>　
             <%= f.label :ship_address, :ご自身の住所, {style: "display: inline-block;"} %><br>
             <p>
               〒<%= current_end_user.postal_code %>
@@ -21,11 +25,15 @@
             </p>
             <p><%= current_end_user.first_name %><%= current_end_user.last_name %></p>
           </div>
+
           <div class="other_address group mb-3">
             <%= f.radio_button :address_option, 1 %>
             <%= f.label :ship_address, :登録済住所から選択, {style: "display: inline-block;"} %><br>
             <%= f.collection_select :address_id, @addresses.all, :id, :ship_address, include_blank: "登録住所から選択" %>
           </div>
+         #情報を保存するのではなく送信すればいいのでaddress_idなどと任意のカラム(?)で進める
+         #strongparametorがデータを保存するときに使うもの
+
           <div class="new_address mb-3">
             <%= f.radio_button :address_option, 2 %>
             <%= f.label :ship_address, :新しいお届け先, {style: "display: inline-block;"} %>

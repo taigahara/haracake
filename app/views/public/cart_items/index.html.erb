@@ -25,6 +25,7 @@
             <tr>
               <td><%= attachment_image_tag cart_item.item, :image, format: 'jpg', fallback: "cake.jpg", size: "100x60" %><%= cart_item.item.name %></td>
               <td><%= (cart_item.item.price * 1.1).floor %></td>
+              
               <%= form_with model: cart_item, local: true do |f| %>
                 <% f.hidden_field :item_id, :value => cart_item.item.id %>
                 <td>

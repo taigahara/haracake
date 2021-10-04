@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'homes#top'
     resources :customers, only: [:index]
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update] do
+      get 'search', on: :collection
+    end
     resources :items, only: [:index, :new, :create, :show, :edit, :update] do
       get 'search', on: :collection
     end
