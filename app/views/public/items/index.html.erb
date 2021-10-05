@@ -1,8 +1,14 @@
 <div class="row mt-5">
   <div class="col-md-10 mx-auto">
     <h3 class="mb-5">商品一覧</h3>
+    
+    <h3>ジャンル一覧</h3>
+       <% @genres.each do |genre| %>
+       <p><%= link_to genre.name, items_path(genre_id: genre.id) %></p>
+       <% end %>
+
     <div class="row item-group">
-      <% @items.each do |item| %>
+     <% @items.each do |item| %>
         <div class="col-md-3">
           <%= link_to item_path(item) do %>
             <p><%= attachment_image_tag item, :image, format: 'jpg', fallback: "cake.jpg", size: "200x133" %></p>
@@ -11,6 +17,6 @@
           <% end %>
         </div>
       <% end %>
-    </div>
+      </div>
   </div>
 </div>
