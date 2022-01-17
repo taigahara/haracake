@@ -2,15 +2,14 @@
   <div class="col-md-10 mx-auto">
     <h3 class="mb-5">商品登録</h3>
     <div class="input mb-5">
-
       <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
         <div class="form_group">
           <%= f.label :商品画像, class: "col-md-2" %>
-          <%= f.attachment_field :image %>
+          <%= f.attachment_field :image %>  
         </div>
         <div class="form-group">
           <%= f.label :商品名, class: "col-md-2" %>
-          <%= f.text_field :name %>
+          <%= f.text_field :name %>  
         </div>
         <div class="form-group">
           <%= f.label :商品説明, class: "col-md-2" %>
@@ -31,7 +30,6 @@
         </div>
         
         <%= f.submit '新規登録', class: "btn btn-success btn-sm" %>
-        
       <% end %>
     </div>
   </div>

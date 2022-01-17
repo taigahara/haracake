@@ -9,11 +9,11 @@ class Public::ItemsController < ApplicationController
     else
       @items = Item.where(is_sale: true)
     end
+
   end
-  
+
   def show
-    @item = Item.find(params[:id])
     @cart_item = CartItem.new
-    session[:item_id] = @item.id
+    @item = Item.find(params[:id])
   end
 end

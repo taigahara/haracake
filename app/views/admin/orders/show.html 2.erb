@@ -34,7 +34,7 @@
             <th>注文ステータス</th>
             <td>
               <%= form_with(model: @order, url: admin_order_path(@order), local: true) do |f| %>
-                <%= f.select  :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}%>
+                <%= f.select :order_status, [["入金待ち", :wait_for_payment], ["入金確認", :confirm_payment], ["製作中", :producing], ["発送準備", :ready_to_ship], ["発送済み", :complete_ship]]%>
                 <%= f.submit "更新", class:"ml-2 btn btn-success btn-sm" %>
               <% end %>
             </td>
@@ -65,8 +65,7 @@
                 <td><%= (order_detail.item.price * 1.1).floor * order_detail.amount %></td>
                 <td>
                   <%= form_with(model: order_detail, url: admin_order_detail_path(order_detail), local: true) do |f| %>
-                  
-                    <%= f.select  :order_detail, OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]}%>
+                    <%= f.select :production_status, [["着手不可", :not_startable], ["製作待ち", :wait], ["製作中", :producing], ["製作完了", :complete]]%>
                     <%= f.submit "更新", class:"ml-2 btn btn-success btn-sm" %>
                   <% end %>
                 </td>

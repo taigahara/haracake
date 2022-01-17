@@ -14,7 +14,7 @@ ja:
       production_status:
         not_startable: "着手不可"
         wait: "製作待ち"
-        producing: "製作中"
+        production: "製作中"
         complete: "製作完了"
   time:
     formats:
